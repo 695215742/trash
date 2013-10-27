@@ -58,14 +58,14 @@ $homework=$class->GetHomework($homework_id);
                         </textarea>
                  </td>
             </tr>
-            <tr id="td2"><td valign="middle"  >附件：：</td><td valign="middle" > <a href="<?php echo $sethomework['link'];?>"><?php echo basename($sethomework['link']);?></a></td></tr>
-            <tr id="td2"><td valign="middle"  >布置日期：	</td><td valign="middle" > <?php echo $sethomework['settime'];?></td></tr>
-            <tr ><td valign="middle"  >截止日期</td><td valign="middle" ><?php echo $sethomework['deadline'];?></td></tr>
+            <tr id="td2"><td valign="middle"  >附件：：</td><td valign="middle" > <a href="<?php if(isset($sethomework['link'])) echo $sethomework['link'];?>"><?php if(isset($sethomework['link'])) echo basename($sethomework['link']);?></a></td></tr>
+            <tr id="td2"><td valign="middle"  >布置日期：	</td><td valign="middle" > <?php if(isset($sethomework['settime'])) echo $sethomework['settime'];?></td></tr>
+            <tr ><td valign="middle"  >截止日期</td><td valign="middle" ><?php if(isset($sethomework['deadline'])) echo $sethomework['deadline'];?></td></tr>
             <form action="../sub/AddHomework.php" method="post" enctype="multipart/form-data">
-            <tr id="td2"><td valign="middle">疑问：</td><td><textarea name="description" id="text"><?php echo $homework['description'];?></textarea></td></tr>
+            <tr id="td2"><td valign="middle">疑问：</td><td><textarea name="description" id="text"><?php if(isset($homework['description'])) echo $homework['description'];?></textarea></td></tr>
             <tr><td width="20%" valign="top" id="TableBody1">答案附件：<br></td>
             	<td valign="top">
-                	<input type="file" name="file" /> <a href="<?php echo $homework['file'];?>"><?php echo basename($homework['file']);?></a>
+                	<input type="file" name="file" /> <a href="<?php echo $homework['file'];?>"><?php if(isset($homework['file'])) echo basename($homework['file']);?></a>
                 </td>
             </tr>
     		<tr>

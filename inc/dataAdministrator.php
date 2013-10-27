@@ -87,7 +87,7 @@ class dataAdministrator extends   SecurityDB{
       $res=self::$db->getRows($sql);
       return $res;
     }
-    function CheckPassword($username,$pwd){
+    function CheckPassword($username,$pwd,$uid = NULL){
       $data=self::SelectByName($username);	  
       if(!empty($data))
       return parent::checkPassword($data['password'],$pwd,$data['administrator_id']);

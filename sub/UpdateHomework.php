@@ -28,5 +28,5 @@ else{
   echo "data error";
   die();
 }
-$form->jumpBack('../teacher/teacher_homework.php');
+$form->jumpBack("../teacher/teacher_homework.php?id = "+$_POST['course_id']);
 ?>

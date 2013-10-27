@@ -7,17 +7,20 @@
 <link rel="stylesheet" type="text/css" href="../style/main_menu.css" />
 <link rel="stylesheet" type="text/css" href="../style/foot.css" />
 <link rel="stylesheet" type="text/css" href="../style/teacher_homework_list.css" />
-<?
+<?php
 include_once('../fun/page.php');
 include_once('./teacher.php');
 
 $class=new Teacher('TEACHER');
 
 $data=$class->HandinHomework();
-$page=intval($_GET['page']);
-if(!empty($page))
-for($i=0;$i<($page-1)*15;++$i)
-next($data);
+if(isset($_GET['page']))
+{
+	$page=intval($_GET['page']);
+	if(!empty($page))
+	for($i=0;$i<($page-1)*15;++$i)
+	next($data);
+}
 
 ?>
 </head>
@@ -44,20 +47,24 @@ next($data);
                     <tr><td><?php echo $v['student_id']?></td>
                     <td><?php echo $v['name']?></td>
                     <td><?php 					
-					echo is_null($v['file'])||empty($v['file'])?
+					echo !isset($v['file'])?
 					 "<font color='red'>否</font>" : 
 					"<a href='{$v['file']}'>".basename($v['file'])."</a>";
 					?>
 					</td>
                     <td>
-                    <?php 					
+                    <?php
+					if(!isset($v['readtime'])){
+					echo "<font color='red'>否</font>";
+					}
+					else{					
 				 	if (strtotime($v['readtime'])<strtotime($v['settime'])) {
 						if(isset($v['readtime'])||empty($v['readtime']))
 						echo "<font color='red'>否</font>";		
 						else echo "<font color='red'>新文件，请重新批改</font>" ;	 
 					 			
 					}
-					else echo	"是";
+					else echo	"是";}
 					?>
                     </td></tr>
                     <?php }?>

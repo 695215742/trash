@@ -7,17 +7,19 @@
 <link rel="stylesheet" type="text/css" href="../style/teacher_homework.css" />
 <link rel="stylesheet" type="text/css" href="../style/main_menu.css" />
 <link rel="stylesheet" type="text/css" href="../style/foot.css" />
-<?
+<?php
 
 include_once('../fun/page.php');
 include_once('../student/class.php');
 $class=new Classr('TEACHER');
 $data=$class->GetAllHomework();
-$page=intval($_GET['page']);
-if(!empty($page))
-for($i=0;$i<($page-1)*7;++$i)
-next($data);
-
+if(isset($_GET['page']))
+{
+	$page=intval($_GET['page']);
+	if(!empty($page))
+	for($i=0;$i<($page-1)*7;++$i)
+	next($data);
+}
 
 ?>
 </head>

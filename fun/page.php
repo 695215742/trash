@@ -1,4 +1,4 @@
-<?
+<?php
 	function _PAGEFT($totle, $displaypg = 20, $url = '') {
 
 		global $page, $firstcount, $pagenav, $_SERVER;
@@ -14,21 +14,25 @@
 		//URL分析：
 		$parse_url = parse_url($url);
 		//print_r($parse_url);
-		$url_query = $parse_url["query"]; //单独取出URL的查询字串
+		if(isset($_GET['page']))
+			$url_query = $_GET['page']; //单独取出URL的查询字串
 		//echo $url_query;//page=2
-		if ($url_query) {
-			//echo $url_query;
-			$url_query = ereg_replace("(^|&)page=$page", "", $url_query);
-			//echo $url_query;
-			//echo $parse_url["query"];//page=2
-			$url = str_replace($parse_url["query"], $url_query, $url);
-			//echo $url;
-			if ($url_query)
-				$url .= "&page";
-			else
-				$url .= "page";
-		} else {
-			$url .= "?page";
+		if(isset($url_query))
+		{
+			if ($url_query) {
+				//echo $url_query;
+				$url_query = ereg_replace("(^|&)page=$page", "", $url_query);
+				//echo $url_query;
+				//echo $parse_url["query"];//page=2
+				$url = str_replace($parse_url["query"], $url_query, $url);
+				//echo $url;
+				if ($url_query)
+					$url .= "&page";
+				else
+					$url .= "page";
+			} else {
+				$url .= "?page";
+			}
 		}
 		//echo $url;
 		$lastpg = ceil($totle / $displaypg); //最后页，也是总页数

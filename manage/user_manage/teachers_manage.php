@@ -15,10 +15,13 @@ $login->authority(constant('ADMIN'));
 	if(!$data){
 		echo "数据库为空";
 	} 
-	$page=intval($_GET['page']);
-  if(!empty($page))
-  for($i=0;$i<($page-1)*15;++$i)
-  next($data);
+	if(isset($_GET['page']))
+	{
+		$page=intval($_GET['page']);
+	  if(!empty($page))
+	  for($i=0;$i<($page-1)*15;++$i)
+	  next($data);
+	}
 ?>
 <link rel="stylesheet" type="text/css" href="../../style/head.css"/>
 <link rel="stylesheet" href="../../style/foot.css"  type="text/css"/>

@@ -18,11 +18,14 @@
     die();
   }
   $dbCourseSelection=new dataCourseSelection;
-  $data=$dbCourseSelection->SelectByClass($class_id);  
-  $page=intval($_GET['page']);
-  			if(!empty($page))
+  $data=$dbCourseSelection->SelectByClass($class_id);
+	if(isset($_GET['page']))
+	{
+		$page=intval($_GET['page']);
+  		if(!empty($page))
  			for($i=0;$i<($page-1)*15;++$i)
-  			next($data);
+				next($data);
+	}
 
 ?>
 <link rel="stylesheet" type="text/css" href="../../style/head.css"/>

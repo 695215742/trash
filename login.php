@@ -10,7 +10,8 @@ include_once(dirname(__FILE__).'/globals/globals.php');
 class LoginClass{
   function __construct(){
     ob_start();
-    session_start();
+    if(!isset($_SESSION['name']))
+		session_start();
   }
   function logout($jump=true){
     $type=$_SESSION['type'];
@@ -42,7 +43,7 @@ class LoginClass{
   function loginState(){
     if(!isset($_SESSION['name'])||!isset($_SESSION['type'])){ 
       if(isset($_COOKIE['name'])&&isset($_COOKIE['type'])&&isset($_COOKIE['pwd'])) {
-        if(self::checkPassword($_COOKIE['name'],$_COOKIE['pwd'],$_COOKIE['type'],false)){
+        if(self::checkPassword($_COOKIE['name'],$_COOKIE['pwd'],$_COOKIE['type'])){
           $_SESSION['name']=$_COOKIE['name'];
           $_SESSION['type'] =$_COOKIE['type'];
           return $_SESSION['type'];

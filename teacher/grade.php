@@ -7,17 +7,19 @@
 <link rel="stylesheet" type="text/css" href="../style/main_menu.css" />
 <link rel="stylesheet" type="text/css" href="../style/foot.css" />
 <link rel="stylesheet" type="text/css" href="../style/teacher_homework_list.css" />
-<?
+<?php
 include_once('../fun/page.php');
 include_once('./teacher.php');
 $class=new Teacher('TEACHER');
 $data=$class->HandinHomework(true);
 $id=$class->__get('id');
-$page=intval($_GET['page']);
-if(!empty($page))
-for($i=0;$i<($page-1)*15;++$i)
-next($data);
-
+if(isset($_GET['page']))
+{
+	$page=intval($_GET['page']);
+	if(!empty($page))
+	for($i=0;$i<($page-1)*15;++$i)
+	next($data);
+}
 ?>
 </head>
 
@@ -38,6 +40,7 @@ next($data);
         	</div>
             <div class="_list">
             <form action="../sub/UpdateHomework.php" method="post">
+			<input type ="text" style="display:none" name="course_id" value = "<?php echo $id; ?>" />
 				<table class="_table_list" align="center">
                 	<tr><th>学号</th><th>姓名</th><th>作业</th><th> 分数</th></tr>
                      <?php if(is_array($data))for($i=0;$i<15;$i++,next($data)){ $v=current($data); if(!$v)break;?>

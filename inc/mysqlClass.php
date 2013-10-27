@@ -1,7 +1,7 @@
 <?php
   class Mysqls{
 	private $dblink='';//数据库连接
-	private $config = array('host'=>"127.0.0.1",'username'=>"root",'password'=>"3139",'dbname'=>"website_database");//当前使用
+	private $config = array('host'=>"127.0.0.1",'username'=>"root",'password'=>"",'dbname'=>"website_database");//当前使用
 	
 	function __construct(){
 	}

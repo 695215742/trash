@@ -1,4 +1,4 @@
-<?
+<?php
 	include_once(dirname(__FILE__).'/../course.php');
 	$path=$GLOBALS['PATH'];
 	$course=new Course;

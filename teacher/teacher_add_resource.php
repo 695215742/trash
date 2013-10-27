@@ -16,10 +16,13 @@ include_once('../fun/page.php');
 	<div id="all">
     	<?php include_once('../course/formwork/main_menu.php');
 		$data=$course->GetInformation('RESOURCE');
-		$page=intval($_GET['page']);
-  if(!empty($page))
-  for($i=0;$i<($page-1)*7;++$i)
-  next($data);
+		if(isset($_GET['page']))
+		{
+			$page=intval($_GET['page']);
+		  if(!empty($page))
+		  for($i=0;$i<($page-1)*7;++$i)
+			next($data);
+		}
 		 ?>
     	<div id="body">
         	<div id="position">

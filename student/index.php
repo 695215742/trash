@@ -12,12 +12,14 @@
   include_once('class.php');
   $class=new Classr('STUDENT');
   $data=$class->GetAllHomework(); 
-  
+  if(isset($page))
+  {
   $page=intval($_GET['page']);
+  
   if(!empty($page))
   for($i=0;$i<($page-1)*15;++$i)
   next($data);
-  
+  }
   
   
 ?>
@@ -57,11 +59,21 @@
                         <td valign="middle" ><?php echo substr($v['settime'],0,10)?></td>
                         <td valign="middle" ><?php echo $v['deadline']?></td>
                         <td valign="middle" >
-                        <?php echo $res['settime']; ?>
+                        <?php 
+						if(isset($res['settime']))
+							echo $res['settime'];
+						else
+							echo "无";
+							?>
                         </td>
                         
                         <td valign="middle" >
-                        <?php echo $res['score']?>
+                        <?php 
+						if(isset($res['score']))
+							echo $res['score'];
+						else
+							echo "无";
+							?>
                         </td>
                         <td valign="middle" >
                         <?php echo empty($res)?'<font color="red" >未提交</font>':'已提交'?>
@@ -72,7 +84,8 @@
                         <?php }?>
 						
 						<tr><td colspan="8" align="center"><?php
-						_PAGEFT(count($data),15);
+						include_once('class.php');
+						_PAGEFT(count($data),20,15);
 						 echo $pagenav;
 					   ?></td></tr>
                         </tbody>

@@ -169,7 +169,7 @@ echo $html;
                         </div>
                         <div id="teachers_Pic1"><img width="100%" src='<?php echo substr($teacher[0]['picture'],3);?>' /></div>
                         <p style="font-family: Arial;Font-size: 9pt; margin-top:3px; padding:3px;"><span style="color:#FF9900">个人介绍：</span>
-                        	<?php echo substr($teacher[0]['decription'],0,90)."......"; }?>
+                        	<?php if(isset($teacher[0]['decription'])) echo substr($teacher[0]['decription'],0,90)."......"; }?>
                         </p>
                     </div>
                 </div>

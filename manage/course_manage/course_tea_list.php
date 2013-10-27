@@ -54,7 +54,7 @@
                     <tr><td><?php echo $v['teacher_id']; ?></td><td><?php echo $v['name']; ?></td><td><a href="course_add_students.php?id=<?php echo $v['class_id']; ?>">学生列表</a></td></tr>
                    <?php }?>
                     <tr><td colspan="3">
-                    <input type="button" id="ok" name="sub" value="添加教师" onclick="window.location.href='/ProjectTest/manage/course_manage/course_add_teacher.php?id=<?php echo $course_id?>'"/></td></tr>
+                    <input type="button" id="ok" name="sub" value="添加教师" onclick="window.location.href='./course_add_teacher.php?id=<?php echo $course_id?>'"/></td></tr>
                     
                 </tbody>
             </table>
